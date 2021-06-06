@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>《Web应用基础》课程结业报告</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+  <link rel="stylesheet" href="css/docs.css">
+  <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+</head>
+
+<body class="stackedit">
+
+  <div class="bs-header" id="content">
+    <div class="container">
+        <h1><pre>     
+          《Web应用基础》课程结业报告</pre></h1>
+    </div>
+</div>
+
+  <div class="stackedit__html"><h1><a id="_0"></a>开发内容</h1>
+<p>以Hexo<sup class="footnote-ref"><a href="#fn1" id="fnref1">1</a></sup>作为框架，利用靓丽的主题生成<strong>静态网站</strong>。<br>
+<br></p>
+<h1><a id="_5"></a>开发过程</h1>
+<h2><a id="Hexo_6"></a>Hexo搭建步骤</h2>
+<p>安装Git<br>
+安装Node.js<br>
+安装Hexo<br>
+将hexo部署到GitHub<br>
+<strong>完善网站</strong><br>
+<br><br></p>
+<h3><a id="Git_13"></a>安装Git</h3>
+<blockquote>
+<p>Git是目前世界上最先进的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。也就是用来管理hexo博客文章，上传到GitHub的工具。</p>
+</blockquote>
+<p>Windows：到git官网上下载，Download git，下载后会有一个Git Bash的命令行工具，以后就用这个工具来使用git。</p>
+<p>Linux：对linux来说实在是太简单了，因为最早的git就是在linux上编写的，只需要一行命令。</p>
+<pre><code class="prism language-bash"><span class="token operator">&gt;</span> <span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">git</span>
+</code></pre>
+<p>安装好后，用  <code>git --version</code>  来查看一下版本<br>
+<br><br></p>
+<h3><a id="Nodejs_27"></a>安装Node.js</h3>
+<p>Hexo是基于Node.js编写的，所以需要安装一下Node.js和里面的npm工具。</p>
+<p>Windows：Node.js选择<mark>LTS</mark>版本。</p>
+<p>Linux：</p>
+<pre><code class="prism language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> nodejs
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> <span class="token function">npm</span>
+</code></pre>
+<p>安装完后，打开命令行</p>
+<pre><code class="prism language-bash">node -v
+<span class="token function">npm</span> -v
+</code></pre>
+<p>检查一下有没有安装成功</p>
+<h3><a id="Hexo_50"></a>配置Hexo</h3>
+<p>前面git和nodejs安装好后，就可以配置hexo了，先创建一个文件夹blog，然后cd到这个文件夹下（或者在这个文件夹下直接右键git bash打开）。</p>
+<p>输入命令</p>
+<pre><code class="prism language-bash"><span class="token function">npm</span> <span class="token function">install</span> -g hexo-cli
+</code></pre>
+<p>依旧用<code>hexo -v</code>查看一下版本<br>
+<br><br></p>
+<p>接下来初始化一下Hexo</p>
+<pre><code class="prism language-bash">hexo init blog
+</code></pre>
+<p>进入该文件夹并更新npm</p>
+<pre><code class="prism language-bash"><span class="token builtin class-name">cd</span> blog 
+<span class="token function">npm</span> <span class="token function">install</span>
+</code></pre>
+<p><br><br><br>
+新建完成后，指定文件夹目录下有：</p>
+<p>node_modules: 依赖包<br>
+public：存放生成的页面<br>
+scaffolds：生成文章的一些模板<br>
+source：用来存放你的文章<br>
+themes：主题<br>
+<mark>config.yml: 博客的配置文件</mark></p>
+<br>
+<pre><code class="prism language-bash">hexo g
+hexo server
+</code></pre>
+<p>打开hexo的服务，在浏览器输入localhost:4000就可以看到生成的博客。</p>
+<h3><a id="HexoGitHub_94"></a>将Hexo部署到GitHub</h3>
+<p>这一步，就可以将hexo和GitHub关联起来，也就是将hexo生成的文章部署到GitHub上，打开站点配置文件 _config.yml，翻到最后，修改为<br>
+YourgithubName(GitHub账户)。</p>
+<blockquote>
+<p>deploy:   type: git   repo:<br>
+https://github.com/YourgithubName/YourgithubName.github.io.git<br>
+branch: master</p>
+</blockquote>
+<p>这个时候需要先安装deploy-git ，也就是部署的命令，这样才能用命令部署到GitHub。</p>
+<pre><code class="prism language-bash"><span class="token function">npm</span> <span class="token function">install</span> hexo-deployer-git --save
+</code></pre>
+<p>然后</p>
+<pre><code class="prism language-bash">hexo clean
+hexo generate
+hexo deploy
+</code></pre>
+<p>其中 hexo clean清理生成的缓存。<br>
+hexo generate 顾名思义，生成静态文章，可以使用 hexo g缩写。<br>
+hexo deploy 部署文章，可以使用hexo d缩写。<br>
+<strong>注意deploy时可能要你输入username和password。</strong></p>
+<h3><a id="_121"></a>完善网站</h3>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 添加相册页面</li>
+</ul>
+<p>在本地和Github上分别创建相册仓库，并用git将两者关联起来。使用python脚本对图片进行相应的处理。然后再用git把本地照片push到github对应的仓库里。</p>
+<pre><code class="prism language-javascript"><span class="token operator">&lt;</span>link rel<span class="token operator">=</span><span class="token string">"stylesheet"</span> href<span class="token operator">=</span><span class="token string">"./ins.css"</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"photos-btn-wrap"</span><span class="token operator">&gt;</span>
+	<span class="token operator">&lt;</span>a <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"photos-btn active"</span> href<span class="token operator">=</span><span class="token string">"javascript:void(0)"</span><span class="token operator">&gt;</span>Photos<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+	<span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> <span class="token operator">&lt;</span>a <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"photos-btn"</span> href<span class="token operator">=</span><span class="token string">"#"</span><span class="token operator">&gt;</span>待续<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"instagram itemscope"</span><span class="token operator">&gt;</span>
+	<span class="token operator">&lt;</span>a href<span class="token operator">=</span><span class="token string">"https://Charondown.github.io/"</span> target<span class="token operator">=</span><span class="token string">"_blank"</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"open-ins"</span><span class="token operator">&gt;</span>图片正在加载中…<span class="token operator">&lt;</span><span class="token operator">/</span>a<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+  <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">loadScript</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">path</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> $script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span>
+      document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'body'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>$script<span class="token punctuation">)</span>
+      $script<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'src'</span><span class="token punctuation">,</span> path<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">loadScript</span><span class="token punctuation">(</span><span class="token string">'./ins.js'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+</code></pre>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 添加分类页面</li>
+</ul>
+<p><img src="" alt=""></p>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 添加归档页面<br>
+<img src="https://img-blog.csdnimg.cn/20210605222219149.png" alt=""><br>
+<br></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 添加背景音乐</li>
+</ul>
+<pre><code class="prism language-javascript"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span>音乐播放插件<span class="token operator">--</span><span class="token operator">&gt;</span>
+			<span class="token operator">&lt;</span>div style<span class="token operator">=</span><span class="token string">"margin-top:30px;"</span><span class="token operator">&gt;</span>
+				<span class="token operator">&lt;</span>iframe frameborder<span class="token operator">=</span><span class="token string">"no"</span> border<span class="token operator">=</span><span class="token string">"0"</span> marginwidth<span class="token operator">=</span><span class="token string">"0"</span> marginheight<span class="token operator">=</span><span class="token string">"0"</span> width<span class="token operator">=</span><span class="token number">220</span> height<span class="token operator">=</span><span class="token number">86</span> src<span class="token operator">=</span><span class="token string">"//music.163.com/outchain/player?type=2&amp;id=1378631615&amp;auto=1&amp;height=66"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>iframe<span class="token operator">&gt;</span>
+			<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+</code></pre>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 添加统计网站访问量</li>
+</ul>
+<pre><code class="prism language-javascript"># <span class="token constant">PV</span>方式，单个用户连续点击 n 篇，记录 n 次记录值
+<span class="token operator">&lt;</span>span id<span class="token operator">=</span><span class="token string">"busuanzi_container_site_pv"</span><span class="token operator">&gt;</span>    本站总访问量<span class="token operator">&lt;</span>span id<span class="token operator">=</span><span class="token string">"busuanzi_value_site_pv"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>次<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+
+# <span class="token constant">UV</span>方式，单个用户连续点击 n 篇，记录 <span class="token number">1</span> 次记录值
+<span class="token operator">&lt;</span>span id<span class="token operator">=</span><span class="token string">"busuanzi_container_site_uv"</span><span class="token operator">&gt;</span>  本站访客数<span class="token operator">&lt;</span>span id<span class="token operator">=</span><span class="token string">"busuanzi_value_site_uv"</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>人次<span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+</code></pre>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 网站运行时间</li>
+</ul>
+<pre><code class="prism language-javascript">			<span class="token operator">&lt;</span>span id<span class="token operator">=</span><span class="token string">"timeDate"</span><span class="token operator">&gt;</span>载入天数<span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span><span class="token operator">&lt;</span>span id<span class="token operator">=</span><span class="token string">"times"</span><span class="token operator">&gt;</span>载入时分秒<span class="token operator">...</span><span class="token operator">&lt;</span><span class="token operator">/</span>span<span class="token operator">&gt;</span>
+			<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+				<span class="token keyword">var</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+				<span class="token keyword">function</span> <span class="token function">createtime</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> 
+					<span class="token keyword">var</span> grt<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">"11/23/2018 20:00:00"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//此处修改你的建站时间或者网站上线时间 </span>
+					now<span class="token punctuation">.</span><span class="token function">setTime</span><span class="token punctuation">(</span>now<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">+</span><span class="token number">250</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+					days <span class="token operator">=</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> grt <span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span> <span class="token operator">/</span> <span class="token number">60</span> <span class="token operator">/</span> <span class="token number">60</span> <span class="token operator">/</span> <span class="token number">24</span><span class="token punctuation">;</span> dnum <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>days<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+					hours <span class="token operator">=</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> grt <span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span> <span class="token operator">/</span> <span class="token number">60</span> <span class="token operator">/</span> <span class="token number">60</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">24</span> <span class="token operator">*</span> dnum<span class="token punctuation">)</span><span class="token punctuation">;</span> hnum <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>hours<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+					<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>hnum<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">==</span><span class="token number">1</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>hnum <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> hnum<span class="token punctuation">;</span><span class="token punctuation">}</span> minutes <span class="token operator">=</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> grt <span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span> <span class="token operator">/</span><span class="token number">60</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> dnum<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">*</span> hnum<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+					mnum <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>minutes<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>mnum<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">==</span><span class="token number">1</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>mnum <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> mnum<span class="token punctuation">;</span><span class="token punctuation">}</span> 
+					seconds <span class="token operator">=</span> <span class="token punctuation">(</span>now <span class="token operator">-</span> grt <span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">1000</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">24</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> dnum<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">*</span> <span class="token number">60</span> <span class="token operator">*</span> hnum<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token punctuation">(</span><span class="token number">60</span> <span class="token operator">*</span> mnum<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+					snum <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span>seconds<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>snum<span class="token punctuation">)</span><span class="token punctuation">.</span>length <span class="token operator">==</span><span class="token number">1</span> <span class="token punctuation">)</span><span class="token punctuation">{</span>snum <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token operator">+</span> snum<span class="token punctuation">;</span><span class="token punctuation">}</span> 
+					document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"timeDate"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"本站已运行 "</span><span class="token operator">+</span>dnum<span class="token operator">+</span><span class="token string">" 天 "</span><span class="token punctuation">;</span> 
+					document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"times"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> hnum <span class="token operator">+</span> <span class="token string">" 小时 "</span> <span class="token operator">+</span> mnum <span class="token operator">+</span> <span class="token string">" 分 "</span> <span class="token operator">+</span> snum <span class="token operator">+</span> <span class="token string">" 秒"</span><span class="token punctuation">;</span> 
+				<span class="token punctuation">}</span> 
+				<span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token string">"createtime()"</span><span class="token punctuation">,</span><span class="token number">250</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+
+</code></pre>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 单篇文章点击量</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 文章文字统计与阅读时间推荐</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 评论功能</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 打赏功能<br>
+<br></li>
+</ul>
+<h3><a id="_203"></a>开发问题</h3>
+<ol>
+<li>文件的配置。</li>
+<li>环境的搭建。</li>
+<li>工具的安装。</li>
+<li>样式的选择。</li>
+<li>功能的完善。</li>
+<li>网站的搭建。<br>
+<br></li>
+</ol>
+<h4><a id="_211"></a>已解决的问题</h4>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 文件的配置。<br>
+通过网络查询相关资料解决。比如在配置config文件过程中，出现格式的错误（空格的使用、符号的全角与半角混乱等等）、部分配置未添加、配置添加错误。</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 环境的搭建。<br>
+Hexo的安装与配置。</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 工具的安装。<br>
+比如Node.js、git、npm、vim以及它们的相关安装。出现了路径问题、版本的不兼容等问题。通过网络查询相关资料解决。</li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" checked="true" disabled=""> 网站的搭建。</li>
+</ul>
+<ol>
+<li>出现了本地仓库与远端仓库无法正常连接的问题：<br>
+1、由于git账号未正常绑定。<br>
+2、远端仓库名更改后，未更改本地配置文件。<br>
+3、指定分支与远端仓库默认分支不同。//现在默认分支是’main’<br>
+<br></li>
+<li>本地照片无法正常加载：<br>
+1、dns污染<br>
+2、host设置错误<br>
+3、官方更新了dns，但是dns缓存没有被更新，导致错误解析。</li>
+</ol>
+<h4><a id="_229"></a>未解决的问题</h4>
+<ul>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 样式的选择。<br>
+整个网站样式并没有达到我想要的最好效果。<br>
+<br><br></li>
+<li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled=""> 	功能的完善。</li>
+</ul>
+<ol>
+<li>
+<p>相册功能过于简略，希望能<strong>增加文字说明</strong>，而不是单纯的照片描述。</p>
+</li>
+<li>
+<p>照片无法正常浏览。由于是将github的仓库当作图床，而github里面的照片存放在亚马逊s3上，该服务器是github的素材服务器 (assets server)，是为了避免跟主服务抢占负载。<strong>修改了本地设备的IP，但是照片在其他设备上仍然无法正常浏览。</strong></p>
+</li>
+<li>
+<p>留言评论功能未完成搭建。</p>
+</li>
+<li>
+<p>背景音乐过于单调，希望能增加一个播放器，以便更多选择。</p>
+</li>
+</ol>
+<h4><a id="_241"></a>如何解决问题</h4>
+<ol start="5">
+<li>本地仓库与远端仓库默认分支不一致的问题。通过查阅资料得知，2020年10月1日起，github仓库的默认分支改为了’main’。<br>
+<br></li>
+<li>照片无法正常加载。计划通过改变上传保存图片的途径，不再使用github的远端仓库当作图床，而是使用像七牛云这类的图床来进行图片的上传与存储。<br>
+<br></li>
+<li>留言评论功能的缺失。计划采用valine 评论系统，修改 hexo 博客目录的 theme/yilia 中的 _config.yml 文件，在 yilia 中的 layout/_partial/post 下新增 valine.ejs文件，修改 yilia 中的 layout/_partial/article.ejs 文件。<br>
+<br></li>
+<li>背景音乐过于单调。添加 APlayer 音乐播放器。</li>
+</ol>
+<h1><a id="_249"></a>总结</h1>
+<ol>
+<li>对于文件操作、文件结构与类型有了更多的了解。</li>
+<li>了解并掌握了一点EJS这种嵌入式JavaScript模板引擎。</li>
+<li>对于CSS有了更深入的了解。	比如样式化文本、CSS的布局。</li>
+<li>对于JS动态生成页面有了更多的理解。</li>
+</ol>
+<blockquote>
+<p>生成的元素是一个完整的DOM对象；这些DOM对象的属性可以是字符串，xml文件，也可以是json格式的数据，存储在后台或者其它位置；通过层层解析，顺着DOM层级关系动态创建在html文档流中；这些html文档放于不同的模板文件中相应生成不同样式的效果。</p>
+</blockquote>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>一个简洁、高效的基于Node.js的静态博客框架。 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+</div>
+</body>
+
+</html>
